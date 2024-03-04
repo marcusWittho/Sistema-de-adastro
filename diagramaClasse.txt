@@ -1,0 +1,13 @@
+Usuario
+	nome
+	idade
+	email
+	telefone
+	evetosCadastrados (Lista de FKs do evento)
+
+Evento
+	nome
+	endereco
+	categoria
+	horario
+	descricao	
