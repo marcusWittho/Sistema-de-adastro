@@ -1,6 +1,7 @@
 Usuario
 	nome
 	idade
+	cpf
 	email
 	telefone
 	evetosCadastrados (Lista de FKs do evento)

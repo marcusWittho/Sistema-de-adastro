@@ -3,3 +3,10 @@
 
 # Ignore Gradle build output directory
 build
+
+# Ignore some .xml from .idea
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+
+# Ignore files
+diagramaClasse.txt
