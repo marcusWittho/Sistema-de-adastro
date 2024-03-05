@@ -2,10 +2,11 @@ package org.wittho.model;
 
 import org.wittho.entity.EventoEntity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
-public class UsuarioModel {
+public class UsuarioModel implements Serializable {
 
   public Integer idUsuario;
   public String nome;

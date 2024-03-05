@@ -1,9 +1,12 @@
 package org.wittho.model;
 
+import org.wittho.entity.EventoEntity;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class EventoModel {
+public class EventoModel implements Serializable {
 
   public Integer idEvento;
   public String nome;
@@ -21,6 +24,15 @@ public class EventoModel {
     this.categoria = categoria;
     this.horario = horario;
     this.descricao = descricao;
+  }
+
+  public EventoModel(EventoEntity eventoEntity) {
+    this.idEvento = eventoEntity.getIdEvento();
+    this.nome = eventoEntity.getNome();
+    this.endereco = eventoEntity.getEndereco();
+    this.categoria = eventoEntity.getCategoria();
+    this.horario = eventoEntity.getHorario();
+    this.descricao = eventoEntity.getDescricao();
   }
 
   public Integer getIdEvento() {

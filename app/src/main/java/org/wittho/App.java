@@ -3,12 +3,32 @@
  */
 package org.wittho;
 
+import org.wittho.controller.EventoController;
+import org.wittho.model.EventoModel;
+import org.wittho.repository.EventoRepository;
+import org.wittho.service.EventoService;
+
+import java.time.LocalDateTime;
+
 public class App {
-  public String getGreeting() {
-    return "Hello World!";
-  }
 
   public static void main(String[] args) {
-    System.out.println(new App().getGreeting());
+
+    final EventoRepository eventoRepository = new EventoRepository();
+    final EventoService eventoService = new EventoService(eventoRepository);
+    final EventoController eventoController = new EventoController(eventoService);
+
+    EventoModel evento001 = new EventoModel(
+        1,
+        "Nome do evento_001",
+        "Endereço do evento_001",
+        "Categoria do evento_001",
+        LocalDateTime.now(),
+        "Descrição do evento_001"
+    );
+
+    System.out.println("Evento salvo: " + eventoController.salvarEvento(evento001));
+
+    System.out.println("Evento recuperado: " + eventoController.buscarEvento());
   }
 }
