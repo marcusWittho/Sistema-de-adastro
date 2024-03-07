@@ -1,7 +1,10 @@
 package org.wittho.controller;
 
+import org.wittho.entity.EventoEntity;
 import org.wittho.model.EventoModel;
 import org.wittho.service.EventoService;
+
+import java.util.List;
 
 public class EventoController {
 
@@ -11,11 +14,15 @@ public class EventoController {
     this.eventoService = eventoService;
   }
 
-  public EventoModel salvarEvento(EventoModel eventoModel) {
+  public String salvarEvento(EventoModel eventoModel) {
     return eventoService.salvarEvento(eventoModel);
   }
 
-  public EventoModel buscarEvento() {
+  public List<EventoModel> buscarEvento() {
     return eventoService.buscarEventos();
+  }
+
+  public List<EventoEntity> removerEvento(Integer id) {
+    return eventoService.removerEvento(id);
   }
 }

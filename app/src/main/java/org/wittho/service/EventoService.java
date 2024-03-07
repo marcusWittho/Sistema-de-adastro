@@ -4,6 +4,8 @@ import org.wittho.entity.EventoEntity;
 import org.wittho.model.EventoModel;
 import org.wittho.repository.EventoRepository;
 
+import java.util.List;
+
 public class EventoService {
 
   private final EventoRepository eventoRepository;
@@ -12,17 +14,15 @@ public class EventoService {
     this.eventoRepository = eventoRepository;
   }
 
-  public EventoModel salvarEvento(EventoModel eventoModel) {
-    EventoEntity eventoEntity = new EventoEntity(eventoModel);
-
-    EventoEntity eventoSalvo = eventoRepository.salvarEvento(eventoEntity);
-
-    return new EventoModel(eventoSalvo);
+  public String salvarEvento(EventoModel eventoModel) {
+    return eventoRepository.salvarEvento(new EventoEntity(eventoModel));
   }
 
-  public EventoModel buscarEventos() {
-    EventoEntity eventoEntity = eventoRepository.buscarEventos();
+  public List<EventoModel> buscarEventos() {
+    return new EventoModel().listaEventoModel(eventoRepository.buscarEventos());
+  }
 
-    return new EventoModel(eventoEntity);
+  public List<EventoEntity> removerEvento(Integer id) {
+    return eventoRepository.removerEvento(id);
   }
 }

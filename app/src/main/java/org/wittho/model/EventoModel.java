@@ -4,6 +4,8 @@ import org.wittho.entity.EventoEntity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class EventoModel implements Serializable {
@@ -33,6 +35,15 @@ public class EventoModel implements Serializable {
     this.categoria = eventoEntity.getCategoria();
     this.horario = eventoEntity.getHorario();
     this.descricao = eventoEntity.getDescricao();
+  }
+
+  public List<EventoModel> listaEventoModel(List<EventoEntity> eventosEntity) {
+    List<EventoModel> eventosModel = new ArrayList<>();
+    for (EventoEntity evento : eventosEntity) {
+      eventosModel.add(new EventoModel(evento));
+    }
+
+    return eventosModel;
   }
 
   public Integer getIdEvento() {
@@ -85,7 +96,7 @@ public class EventoModel implements Serializable {
 
   @Override
   public String toString() {
-    return "EventoModel{" +
+    return "{" +
         "idEvento=" + idEvento +
         ", nome='" + nome + '\'' +
         ", endereco='" + endereco + '\'' +

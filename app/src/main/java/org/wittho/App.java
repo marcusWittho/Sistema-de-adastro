@@ -19,7 +19,7 @@ public class App {
     final EventoController eventoController = new EventoController(eventoService);
 
     EventoModel evento001 = new EventoModel(
-        1,
+        null,
         "Nome do evento_001",
         "Endereço do evento_001",
         "Categoria do evento_001",
@@ -27,8 +27,19 @@ public class App {
         "Descrição do evento_001"
     );
 
-    System.out.println("Evento salvo: " + eventoController.salvarEvento(evento001));
+    EventoModel evento002 = new EventoModel(
+        null,
+        "Nome do evento_002",
+        "Endereço do evento_002",
+        "Categoria do evento_002",
+        LocalDateTime.now(),
+        "Descrição do evento_002"
+    );
 
+    System.out.println("Evento salvo: " + eventoController.salvarEvento(evento001));
+    System.out.println("Evento recuperado: " + eventoController.buscarEvento());
+
+    System.out.println("Evento salvo: " + eventoController.salvarEvento(evento002));
     System.out.println("Evento recuperado: " + eventoController.buscarEvento());
   }
 }
