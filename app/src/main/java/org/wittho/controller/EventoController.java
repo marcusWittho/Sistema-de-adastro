@@ -25,4 +25,8 @@ public class EventoController {
   public List<EventoEntity> removerEvento(Integer id) {
     return eventoService.removerEvento(id);
   }
+
+  public List<EventoModel> listarEventosFuturos() {
+    return eventoService.listarEventosFuturos();
+  }
 }

@@ -9,9 +9,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class EventoRepository {
 
@@ -22,7 +25,7 @@ public class EventoRepository {
   public String salvarEvento(EventoEntity evento) {
     FileOutputStream arquivoSaida = null;
     ObjectOutputStream objetoSaida = null;
-    List<EventoEntity> eventoEntities = buscarEventos();
+    List<EventoEntity> eventoEntities = new ArrayList<>(buscarEventos());
 
     try {
       arquivoSaida = new FileOutputStream(EVENTS_DATA);
@@ -39,7 +42,7 @@ public class EventoRepository {
       }
 
       eventoEntities.add(evento);
-      objetoSaida.writeObject(eventoEntities);
+      this.salvarListaEventos(eventoEntities);
     } catch (IOException err) {
       err.printStackTrace();
     } finally {
@@ -81,6 +84,7 @@ public class EventoRepository {
     FileInputStream arquivoEntrada = null;
     ObjectInputStream objetoEntrada = null;
     List<EventoEntity> eventos = new ArrayList<>();
+    List<EventoEntity> eventosOrdenados = new ArrayList<>();
     try {
       File eventsData = new File(EVENTS_DATA);
 
@@ -95,6 +99,10 @@ public class EventoRepository {
         try {
           List<EventoEntity> eventoRecuperado = (List<EventoEntity>) objetoEntrada.readObject();
           eventos.addAll(eventoRecuperado);
+
+          eventosOrdenados = eventos.stream()
+              .sorted(Comparator.comparing(EventoEntity::getHorario))
+              .toList();
         } catch(EOFException err) {
           break;
         }
@@ -110,7 +118,7 @@ public class EventoRepository {
       }
     }
 
-    return eventos;
+    return eventosOrdenados;
   }
 
   public List<EventoEntity> removerEvento(Integer id) {
@@ -125,5 +133,13 @@ public class EventoRepository {
     salvarListaEventos(eventoEntitiesFiltrados);
 
     return eventoEntitiesFiltrados;
+  }
+
+  public List<EventoEntity> listarEventosFuturos() {
+    List<EventoEntity> eventos = this.buscarEventos();
+
+    return eventos.stream()
+        .filter(evento -> evento.getHorario().isAfter(LocalDateTime.now()))
+        .collect(Collectors.toList());
   }
 }
