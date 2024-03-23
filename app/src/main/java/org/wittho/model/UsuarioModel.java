@@ -1,45 +1,38 @@
 package org.wittho.model;
 
-import org.wittho.entity.EventoEntity;
+public class UsuarioModel {
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
+  private Integer id;
+  private String username;
+  private String email;
+  private String cpf;
+  private String phone;
 
-public class UsuarioModel implements Serializable {
+  public UsuarioModel() {
+  }
 
-  public Integer idUsuario;
-  public String nome;
-  public String cpf;
-  public Integer idade;
-  public String telefone;
-  public List<EventoEntity> eventosCadastrados;
-
-  public UsuarioModel() {}
-
-  public UsuarioModel(Integer idUsuario, String nome, String cpf, Integer idade, String telefone, List<EventoEntity> eventosCadastrados) {
-    this.idUsuario = idUsuario;
-    this.nome = nome;
+  public UsuarioModel(Integer id, String username, String email, String cpf, String phone) {
+    this.id = id;
+    this.username = username;
+    this.email = email;
     this.cpf = cpf;
-    this.idade = idade;
-    this.telefone = telefone;
-    this.eventosCadastrados = eventosCadastrados;
+    this.phone = phone;
   }
 
-  public Integer getIdUsuario() {
-    return idUsuario;
+  public String getUsername() {
+    return username;
   }
 
-  public void setIdUsuario(Integer idUsuario) {
-    this.idUsuario = idUsuario;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public String getNome() {
-    return nome;
+  public String getEmail() {
+    return email;
   }
 
-  public void setNome(String nome) {
-    this.nome = nome;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public String getCpf() {
@@ -50,56 +43,21 @@ public class UsuarioModel implements Serializable {
     this.cpf = cpf;
   }
 
-  public Integer getIdade() {
-    return idade;
+  public String getPhone() {
+    return phone;
   }
 
-  public void setIdade(Integer idade) {
-    this.idade = idade;
-  }
-
-  public String getTelefone() {
-    return telefone;
-  }
-
-  public void setTelefone(String telefone) {
-    this.telefone = telefone;
-  }
-
-  public List<EventoEntity> getEventosCadastrados() {
-    return eventosCadastrados;
-  }
-
-  public void setEventosCadastrados(List<EventoEntity> eventosCadastrados) {
-    this.eventosCadastrados = eventosCadastrados;
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 
   @Override
   public String toString() {
     return "UsuarioModel{" +
-        "idUsuario=" + idUsuario +
-        ", nome='" + nome + '\'' +
+        "username='" + username + '\'' +
+        ", email='" + email + '\'' +
         ", cpf='" + cpf + '\'' +
-        ", idade=" + idade +
-        ", telefone='" + telefone + '\'' +
-        ", eventosCadastrados=" + eventosCadastrados +
+        ", phone='" + phone + '\'' +
         '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof UsuarioModel that)) return false;
-    return Objects.equals(getIdUsuario(), that.getIdUsuario())
-        && Objects.equals(getNome(), that.getNome())
-        && Objects.equals(getCpf(), that.getCpf())
-        && Objects.equals(getIdade(), that.getIdade())
-        && Objects.equals(getTelefone(), that.getTelefone())
-        && Objects.equals(getEventosCadastrados(), that.getEventosCadastrados());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getIdUsuario(), getNome(), getCpf(), getIdade(), getTelefone(), getEventosCadastrados());
   }
 }

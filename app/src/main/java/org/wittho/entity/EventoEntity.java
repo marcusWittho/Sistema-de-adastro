@@ -1,125 +1,95 @@
 package org.wittho.entity;
 
-import org.wittho.model.EventoModel;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-public class EventoEntity implements Serializable {
+@Entity
+@Table(name = "eventos")
+public class EventoEntity {
 
-  private Integer idEvento;
-  private String nome;
-  private String endereco;
-  private String categoria;
-  private LocalDateTime horario;
-  private String descricao;
+  @Column(name = "id_evento")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  private Integer id;
 
-  public EventoEntity() {}
+  @Column(name = "eventname")
+  private String eventname;
 
-  public EventoEntity(Integer idEvento, String nome, String endereco, String categoria, LocalDateTime horario, String descricao) {
-    this.idEvento = idEvento;
-    this.nome = nome;
-    this.endereco = endereco;
-    this.categoria = categoria;
-    this.horario = horario;
-    this.descricao = descricao;
+  @Column(name = "address")
+  private String address;
+
+  @Column(name = "category")
+  private String category;
+
+  @Column(name = "event_date")
+  private LocalDateTime eventDate;
+
+  @Column(name = "description")
+  private String description;
+
+  public EventoEntity() {
   }
 
-  public EventoEntity(EventoModel eventoModel) {
-    this.idEvento = eventoModel.getIdEvento();
-    this.nome = eventoModel.getNome();
-    this.endereco = eventoModel.getEndereco();
-    this.categoria = eventoModel.getCategoria();
-    this.horario = eventoModel.getHorario();
-    this.descricao = eventoModel.getDescricao();
+  public EventoEntity(Integer id, String eventname, String address, String category, LocalDateTime eventDate, String description) {
+    this.id = id;
+    this.eventname = eventname;
+    this.address = address;
+    this.category = category;
+    this.eventDate = eventDate;
+    this.description = description;
   }
 
-  public List<EventoEntity> listaEventosEntity(List<EventoModel> listaEventoModels) {
-    List<EventoEntity> listaEventos = new ArrayList<>();
-    for(EventoModel eventoModel : listaEventoModels) {
-      listaEventos.add(new EventoEntity(eventoModel));
-    }
-
-    return listaEventos;
+  public Integer getId() {
+    return id;
   }
 
-  public Integer getIdEvento() {
-    return idEvento;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
-  public void setIdEvento(Integer idEvento) {
-    this.idEvento = idEvento;
+  public String getEventname() {
+    return eventname;
   }
 
-  public String getNome() {
-    return nome;
+  public void setEventname(String eventname) {
+    this.eventname = eventname;
   }
 
-  public void setNome(String nome) {
-    this.nome = nome;
+  public String getAddress() {
+    return address;
   }
 
-  public String getEndereco() {
-    return endereco;
+  public void setAddress(String address) {
+    this.address = address;
   }
 
-  public void setEndereco(String endereco) {
-    this.endereco = endereco;
+  public String getCategory() {
+    return category;
   }
 
-  public String getCategoria() {
-    return categoria;
+  public void setCategory(String category) {
+    this.category = category;
   }
 
-  public void setCategoria(String categoria) {
-    this.categoria = categoria;
+  public LocalDateTime getEventDate() {
+    return eventDate;
   }
 
-  public LocalDateTime getHorario() {
-    return horario;
+  public void setEventDate(LocalDateTime eventDate) {
+    this.eventDate = eventDate;
   }
 
-  public void setHorario(LocalDateTime horario) {
-    this.horario = horario;
+  public String getDescription() {
+    return description;
   }
 
-  public String getDescricao() {
-    return descricao;
-  }
-
-  public void setDescricao(String descricao) {
-    this.descricao = descricao;
-  }
-
-  @Override
-  public String toString() {
-    return "{" +
-        "idEvento=" + idEvento +
-        ", nome='" + nome + '\'' +
-        ", endereco='" + endereco + '\'' +
-        ", categoria='" + categoria + '\'' +
-        ", horario=" + horario +
-        ", descricao='" + descricao + '\'' +
-        '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof EventoEntity that)) return false;
-    return Objects.equals(getIdEvento(), that.getIdEvento())
-        && Objects.equals(getNome(), that.getNome())
-        && Objects.equals(getEndereco(), that.getEndereco())
-        && Objects.equals(getCategoria(), that.getCategoria())
-        && Objects.equals(getHorario(), that.getHorario())
-        && Objects.equals(getDescricao(), that.getDescricao());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getIdEvento(), getNome(), getEndereco(), getCategoria(), getHorario(), getDescricao());
+  public void setDescription(String description) {
+    this.description = description;
   }
 }

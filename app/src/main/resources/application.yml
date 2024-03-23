@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: eventos
+  datasource:
+    url: jdbc:h2:mem:h2db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  liquibase:
+    change-log: classpath:/db/changelog-master.yaml

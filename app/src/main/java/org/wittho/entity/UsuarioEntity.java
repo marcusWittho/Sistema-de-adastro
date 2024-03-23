@@ -1,42 +1,66 @@
 package org.wittho.entity;
 
-import java.util.List;
-import java.util.Objects;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "usuario")
 public class UsuarioEntity {
 
-  private Integer idUsuario;
-  private String nome;
+  @Column(name = "id_usuario")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  private Integer id;
+
+  @Column(name = "username")
+  private String username;
+
+  @Column(name = "email")
+  private String email;
+
+  @Column(name = "cpf")
   private String cpf;
-  private Integer idade;
-  private String telefone;
-  private List<EventoEntity> eventosCadastrados;
 
-  public UsuarioEntity() {}
+  @Column(name = "phone")
+  private String phone;
 
-  public UsuarioEntity(Integer idUsuario, String nome, String cpf, Integer idade, String telefone, List<EventoEntity> eventosCadastrados) {
-    this.idUsuario = idUsuario;
-    this.nome = nome;
+  public UsuarioEntity() {
+  }
+
+  public UsuarioEntity(Integer id, String username, String email, String cpf, String phone) {
+    this.id = id;
+    this.username = username;
+    this.email = email;
     this.cpf = cpf;
-    this.idade = idade;
-    this.telefone = telefone;
-    this.eventosCadastrados = eventosCadastrados;
+    this.phone = phone;
   }
 
-  public Integer getIdUsuario() {
-    return idUsuario;
+  public Integer getId() {
+    return id;
   }
 
-  public void setIdUsuario(Integer idUsuario) {
-    this.idUsuario = idUsuario;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
-  public String getNome() {
-    return nome;
+  public String getUsername() {
+    return username;
   }
 
-  public void setNome(String nome) {
-    this.nome = nome;
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public String getCpf() {
@@ -47,56 +71,11 @@ public class UsuarioEntity {
     this.cpf = cpf;
   }
 
-  public Integer getIdade() {
-    return idade;
+  public String getPhone() {
+    return phone;
   }
 
-  public void setIdade(Integer idade) {
-    this.idade = idade;
-  }
-
-  public String getTelefone() {
-    return telefone;
-  }
-
-  public void setTelefone(String telefone) {
-    this.telefone = telefone;
-  }
-
-  public List<EventoEntity> getEventosCadastrados() {
-    return eventosCadastrados;
-  }
-
-  public void setEventosCadastrados(List<EventoEntity> eventosCadastrados) {
-    this.eventosCadastrados = eventosCadastrados;
-  }
-
-  @Override
-  public String toString() {
-    return "UsuarioEntity{" +
-        "idUsuario=" + idUsuario +
-        ", nome='" + nome + '\'' +
-        ", cpf='" + cpf + '\'' +
-        ", idade=" + idade +
-        ", telefone='" + telefone + '\'' +
-        ", eventosCadastrados=" + eventosCadastrados +
-        '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof UsuarioEntity that)) return false;
-    return Objects.equals(getIdUsuario(), that.getIdUsuario())
-        && Objects.equals(getNome(), that.getNome())
-        && Objects.equals(getCpf(), that.getCpf())
-        && Objects.equals(getIdade(), that.getIdade())
-        && Objects.equals(getTelefone(), that.getTelefone())
-        && Objects.equals(getEventosCadastrados(), that.getEventosCadastrados());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getIdUsuario(), getNome(), getCpf(), getIdade(), getTelefone(), getEventosCadastrados());
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 }
