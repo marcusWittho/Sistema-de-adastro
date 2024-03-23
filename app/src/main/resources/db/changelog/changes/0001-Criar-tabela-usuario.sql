@@ -1,0 +1,7 @@
+CREATE TABLE usuario(
+  id_usuario SERIAL PRIMARY KEY,
+  username VARCHAR(200) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  cpf VARCHAR(11) NOT NULL,
+  phone VARCHAR(11) NOT NULL
+);
