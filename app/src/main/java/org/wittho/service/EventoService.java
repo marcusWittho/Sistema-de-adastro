@@ -38,7 +38,7 @@ public class EventoService {
       throw new RuntimeException("Evento não encontrado.");
     }
 
-    eventoById.get().setEventname(eventoEntity.getEventname());
+    eventoById.get().setTipoEvento(eventoEntity.getTipoEvento());
     eventoById.get().setAddress(eventoEntity.getAddress());
     eventoById.get().setCategory(eventoEntity.getCategory());
     eventoById.get().setEventDate(eventoEntity.getEventDate());
