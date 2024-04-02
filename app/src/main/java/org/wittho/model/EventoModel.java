@@ -1,10 +1,12 @@
 package org.wittho.model;
 
+import org.wittho.entity.TipoEventoEntity;
+
 import java.time.LocalDateTime;
 
 public class EventoModel {
   private Integer id;
-  private String eventname;
+  private TipoEventoModel tipoEvento;
   private String address;
   private String category;
   private LocalDateTime eventDate;
@@ -13,9 +15,9 @@ public class EventoModel {
   public EventoModel() {
   }
 
-  public EventoModel(Integer id, String eventname, String address, String category, LocalDateTime eventDate, String description) {
+  public EventoModel(Integer id, TipoEventoModel tipoEvento, String address, String category, LocalDateTime eventDate, String description) {
     this.id = id;
-    this.eventname = eventname;
+    this.tipoEvento = tipoEvento;
     this.address = address;
     this.category = category;
     this.eventDate = eventDate;
@@ -30,12 +32,12 @@ public class EventoModel {
     this.id = id;
   }
 
-  public String getEventname() {
-    return eventname;
+  public TipoEventoModel getTipoEvento() {
+    return tipoEvento;
   }
 
-  public void setEventname(String eventname) {
-    this.eventname = eventname;
+  public void setTipoEvento(TipoEventoModel tipoEvento) {
+    this.tipoEvento = tipoEvento;
   }
 
   public String getAddress() {
@@ -74,7 +76,7 @@ public class EventoModel {
   public String toString() {
     return "EventoModel{" +
         "id=" + id +
-        ", eventname='" + eventname + '\'' +
+        ", eventname='" + tipoEvento + '\'' +
         ", address='" + address + '\'' +
         ", category='" + category + '\'' +
         ", eventDate=" + eventDate +

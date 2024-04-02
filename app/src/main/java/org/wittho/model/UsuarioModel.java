@@ -1,7 +1,10 @@
 package org.wittho.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UsuarioModel {
 
+  @JsonProperty(access = JsonProperty.Access.READ_ONLY)
   private Integer id;
   private String username;
   private String email;
@@ -54,7 +57,8 @@ public class UsuarioModel {
   @Override
   public String toString() {
     return "UsuarioModel{" +
-        "username='" + username + '\'' +
+        "id=" + id +
+        ", username='" + username + '\'' +
         ", email='" + email + '\'' +
         ", cpf='" + cpf + '\'' +
         ", phone='" + phone + '\'' +

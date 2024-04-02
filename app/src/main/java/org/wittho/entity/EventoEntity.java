@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
@@ -13,13 +15,14 @@ import java.time.LocalDateTime;
 @Table(name = "eventos")
 public class EventoEntity {
 
+  @Id
   @Column(name = "id_evento")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   private Integer id;
 
-  @Column(name = "eventname")
-  private String eventname;
+  @ManyToOne
+  @JoinColumn(name = "id_tipo_evento")
+  private TipoEventoEntity tipoEvento;
 
   @Column(name = "address")
   private String address;
@@ -36,9 +39,9 @@ public class EventoEntity {
   public EventoEntity() {
   }
 
-  public EventoEntity(Integer id, String eventname, String address, String category, LocalDateTime eventDate, String description) {
+  public EventoEntity(Integer id, TipoEventoEntity tipoEvento, String address, String category, LocalDateTime eventDate, String description) {
     this.id = id;
-    this.eventname = eventname;
+    this.tipoEvento = tipoEvento;
     this.address = address;
     this.category = category;
     this.eventDate = eventDate;
@@ -53,12 +56,12 @@ public class EventoEntity {
     this.id = id;
   }
 
-  public String getEventname() {
-    return eventname;
+  public TipoEventoEntity getTipoEvento() {
+    return tipoEvento;
   }
 
-  public void setEventname(String eventname) {
-    this.eventname = eventname;
+  public void setTipoEvento(TipoEventoEntity tipoEvento) {
+    this.tipoEvento = tipoEvento;
   }
 
   public String getAddress() {

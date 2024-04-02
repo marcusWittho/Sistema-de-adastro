@@ -38,7 +38,7 @@ public class EventoService {
       throw new RuntimeException("Evento não encontrado.");
     }
 
-    eventoById.get().setEventname(eventoEntity.getEventname());
+    eventoById.get().setTipoEvento(eventoEntity.getTipoEvento());
     eventoById.get().setAddress(eventoEntity.getAddress());
     eventoById.get().setCategory(eventoEntity.getCategory());
     eventoById.get().setEventDate(eventoEntity.getEventDate());
@@ -55,5 +55,9 @@ public class EventoService {
 
   public void deleteById(Integer idEvento) {
     repository.deleteById(idEvento);
+  }
+
+  public List<EventoEntity> buscarEventosPorIdUsuario(Integer idUsuario) {
+    return repository.buscarEventosPorIdUsuario(idUsuario);
   }
 }

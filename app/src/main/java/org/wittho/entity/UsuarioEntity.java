@@ -11,9 +11,9 @@ import jakarta.persistence.Table;
 @Table(name = "usuario")
 public class UsuarioEntity {
 
+  @Id
   @Column(name = "id_usuario")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   private Integer id;
 
   @Column(name = "username")

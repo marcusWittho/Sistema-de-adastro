@@ -1,8 +1,12 @@
 package org.wittho.mapper;
 
 import org.wittho.entity.EventoEntity;
+import org.wittho.entity.TipoEventoEntity;
 import org.wittho.entity.UsuarioEntity;
+import org.wittho.entity.UsuarioEventoEntity;
 import org.wittho.model.EventoModel;
+import org.wittho.model.TipoEventoModel;
+import org.wittho.model.UsuarioEventoModel;
 import org.wittho.model.UsuarioModel;
 
 import java.util.ArrayList;
@@ -36,7 +40,7 @@ public class ServiceMapperImpl implements ServiceMapper {
   public EventoModel toEventoModel(EventoEntity eventoEntity) {
     return new EventoModel(
         eventoEntity.getId(),
-        eventoEntity.getEventname(),
+        toTipoEventoModel(eventoEntity.getTipoEvento()),
         eventoEntity.getAddress(),
         eventoEntity.getCategory(),
         eventoEntity.getEventDate(),
@@ -58,11 +62,67 @@ public class ServiceMapperImpl implements ServiceMapper {
   public EventoEntity toEventoEntity(EventoModel eventoModel) {
     return new EventoEntity(
         eventoModel.getId(),
-        eventoModel.getEventname(),
+        toTipoEventoEntity(eventoModel.getTipoEvento()),
         eventoModel.getAddress(),
         eventoModel.getCategory(),
         eventoModel.getEventDate(),
         eventoModel.getDescription()
     );
+  }
+
+  @Override
+  public TipoEventoModel toTipoEventoModel(TipoEventoEntity tipoEventoEntity) {
+    return new TipoEventoModel(
+        tipoEventoEntity.getIdTipoEvento(),
+        tipoEventoEntity.getTitulo()
+    );
+  }
+
+  @Override
+  public TipoEventoEntity toTipoEventoEntity(TipoEventoModel tipoEventoModel) {
+    return new TipoEventoEntity(
+        tipoEventoModel.getIdTipoEvento(),
+        tipoEventoModel.getTitulo()
+    );
+  }
+
+  @Override
+  public List<TipoEventoModel> toListTipoEventoModel(List<TipoEventoEntity> listTipoEventoEntity) {
+    List<TipoEventoModel> tipoEventoModelList = new ArrayList<>();
+
+    listTipoEventoEntity.forEach(tipo -> {
+      tipoEventoModelList.add(this.toTipoEventoModel(tipo));
+    });
+
+    return tipoEventoModelList;
+  }
+
+  @Override
+  public UsuarioEventoModel toUsuarioEventoModel(UsuarioEventoEntity usuarioEventoEntity) {
+    return new UsuarioEventoModel(
+        usuarioEventoEntity.getId(),
+        usuarioEventoEntity.getIdUsuario(),
+        usuarioEventoEntity.getIdEvento()
+    );
+  }
+
+  @Override
+  public UsuarioEventoEntity toUsuarioEventoEntity(UsuarioEventoModel usuarioEventoModel) {
+    return new UsuarioEventoEntity(
+        usuarioEventoModel.getId(),
+        usuarioEventoModel.getIdUsuario(),
+        usuarioEventoModel.getIdEvento()
+    );
+  }
+
+  @Override
+  public List<UsuarioEventoModel> toListUsuarioEventoModel(List<UsuarioEventoEntity> listUsuarioEventoEntity) {
+    List<UsuarioEventoModel> usuarioEventoModelList = new ArrayList<>();
+
+    listUsuarioEventoEntity.forEach(usuarioEvento -> {
+      usuarioEventoModelList.add(this.toUsuarioEventoModel(usuarioEvento));
+    });
+
+    return usuarioEventoModelList;
   }
 }
