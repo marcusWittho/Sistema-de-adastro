@@ -6,8 +6,7 @@
 ./gradlew run
 ```
 
-- Com o projeto rodando no terminal, acesse o caminho abaixo pelo seu navegador para visualizar o banco de dados
-    - http://localhost:8080/h2-console
+- Projeto utiliza o banco de dados Postgres
 
 - Os endpoints criados foram os seguintes: (para testar os endpoints foi utilizado o postman)
     - Usuários
@@ -22,6 +21,13 @@
       - atualizar: localhost:8080/evento/{idEvento} (enviar json do evento no body)
       - listar todos os eventos: localhost:8080/evento
       - remover por id: localhost:8080/evento/{idEvento}
+    - tipo_evento
+      - buscar por id: localhost:8080/tipo-evento/{idTipoEvento}
+      - listar todos os tipos de eventos: localhost:8080/tipo-evento
+    - UsuarioEvento
+      - cadastrar: localhost:8080/usuario-evento
+      - buscar por id: localhost:8080/usuario-evento/{idUsuario}
+      - remover por id: localhost:8080/usuario-evento/{idUsuarioEvento}
 
 Sistema de cadastros de eventos, o usuário pode cadastrar três tipos de eventos:
 - Show 
