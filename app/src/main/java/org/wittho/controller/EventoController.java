@@ -49,4 +49,9 @@ public class EventoController {
   public void deleteByID(@PathVariable Integer idEvento) {
     service.deleteById(idEvento);
   }
+
+  @GetMapping("/buscar-por-id-usuario/{idUsuario}")
+  public List<EventoEntity> buscarEventosPorIdUsuario(@PathVariable Integer idUsuario) {
+    return service.buscarEventosPorIdUsuario(idUsuario);
+  }
 }

@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 @Table(name = "eventos")
 public class EventoEntity {
 
+  @Id
   @Column(name = "id_evento")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
   private Integer id;
 
   @ManyToOne

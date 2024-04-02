@@ -56,4 +56,8 @@ public class EventoService {
   public void deleteById(Integer idEvento) {
     repository.deleteById(idEvento);
   }
+
+  public List<EventoEntity> buscarEventosPorIdUsuario(Integer idUsuario) {
+    return repository.buscarEventosPorIdUsuario(idUsuario);
+  }
 }

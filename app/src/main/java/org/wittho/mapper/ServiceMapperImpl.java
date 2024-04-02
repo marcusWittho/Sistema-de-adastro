@@ -3,8 +3,10 @@ package org.wittho.mapper;
 import org.wittho.entity.EventoEntity;
 import org.wittho.entity.TipoEventoEntity;
 import org.wittho.entity.UsuarioEntity;
+import org.wittho.entity.UsuarioEventoEntity;
 import org.wittho.model.EventoModel;
 import org.wittho.model.TipoEventoModel;
+import org.wittho.model.UsuarioEventoModel;
 import org.wittho.model.UsuarioModel;
 
 import java.util.ArrayList;
@@ -93,5 +95,34 @@ public class ServiceMapperImpl implements ServiceMapper {
     });
 
     return tipoEventoModelList;
+  }
+
+  @Override
+  public UsuarioEventoModel toUsuarioEventoModel(UsuarioEventoEntity usuarioEventoEntity) {
+    return new UsuarioEventoModel(
+        usuarioEventoEntity.getId(),
+        usuarioEventoEntity.getIdUsuario(),
+        usuarioEventoEntity.getIdEvento()
+    );
+  }
+
+  @Override
+  public UsuarioEventoEntity toUsuarioEventoEntity(UsuarioEventoModel usuarioEventoModel) {
+    return new UsuarioEventoEntity(
+        usuarioEventoModel.getId(),
+        usuarioEventoModel.getIdUsuario(),
+        usuarioEventoModel.getIdEvento()
+    );
+  }
+
+  @Override
+  public List<UsuarioEventoModel> toListUsuarioEventoModel(List<UsuarioEventoEntity> listUsuarioEventoEntity) {
+    List<UsuarioEventoModel> usuarioEventoModelList = new ArrayList<>();
+
+    listUsuarioEventoEntity.forEach(usuarioEvento -> {
+      usuarioEventoModelList.add(this.toUsuarioEventoModel(usuarioEvento));
+    });
+
+    return usuarioEventoModelList;
   }
 }

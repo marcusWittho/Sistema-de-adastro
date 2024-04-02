@@ -22,7 +22,9 @@ public class UsuarioService {
   public UsuarioModel insertUser(UsuarioEntity usuarioEntity) {
     ServiceMapper mapper = new ServiceMapperImpl();
 
-    return mapper.toUsuarioModel(repository.save(usuarioEntity));
+    UsuarioEntity usuarioSalvo = repository.save(usuarioEntity);
+
+    return mapper.toUsuarioModel(usuarioSalvo);
   }
 
   public Optional<UsuarioEntity> findById(Integer id) {
